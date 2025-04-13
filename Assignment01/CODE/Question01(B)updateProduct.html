@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>Add new Product</title>
+        <style>
+            body{
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image: url(background-image.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                font-family: cursive;
+                color: #ffffff;
+                }
+            
+            fieldset{
+                border-radius: 20px;
+                width: 40%;
+                height: 60%;
+                backdrop-filter: blur(15px);
+                margin: 2px;
+                border-color:#dce7f6;
+            }
+            table{
+                border-collapse: separate;
+                border-spacing: 20px 15px;
+                padding-left: 40px;
+            }
+            input,select{
+                border-radius: 20px;
+                width: 100%;
+                height: 25px;
+                background: transparent;
+                text-align: center;
+                color: #dce7f6;
+                border-color: #dce7f6;
+                border-style:dashed;
+            }
+            input::placeholder{
+                color: #dce7f6;
+            }
+            select option{
+                color: #dce7f6;
+                background-color:rgb(55, 32, 4);
+            }
+            input[type="submit"],[type="reset"]{
+            border-style: solid;
+            margin-left: 70px;
+            width: 80px;
+            }
+            textarea{
+                background-color:#ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Update Product</legend>
+        <form method="post">
+         <table>
+            <tr>
+                <td><label for="ProductName">Product Name</label></td>
+                <td><input type="text" name="ProductName" placeholder="Enter Product Name" required></td>
+            </tr>
+            <tr>
+                <td><label for="ProductCode">Product Code</label></td>
+                <td><input type="text" name="ProductCode" placeholder="Bar Code" required></td>
+            </tr>
+            <tr>
+                <td><Label for="Quantity">Quantity</Label></td>
+                <td><input type="number" name="Quantity" required></td>
+            </tr>
+            <tr>
+                <td><label for="Brand">Brand</label></td>
+                <td><select name="Brand">
+                    <option value="SelectBrand" disabled selected>Select Brand</option>
+                    <option value="Mobile">Mobile</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="PC">PC</option>
+                    <option value="TV">TV</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="ProductImage">Product Image</label></td>
+                <td><input type="file" name="ProductImage" accept="image/*" required></td>
+            </tr>
+            <tr>
+                <td><label for="product">Product</label></td>
+                <td><textarea name="product" rows="4" cols="35"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                  <input type="submit" value="Update">
+                  <input type="reset" value="Clear">
+                </td>
+              </tr>              
+         </table>
+        </form>
+    </fieldset>
+    </body>
+</html>

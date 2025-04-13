@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        fieldset{
+            border-radius: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .details-btn {
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .edit-btn {
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+            background-color: #2196F3;
+            color: white
+        }
+    </style>
+</head>
+<body>
+    <fieldset>    
+        <legend><h2> Product List </h2></legend>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Brand</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="iphone.png" height="50px" width="50px"></td>
+                <td>iPhone 13s</td>
+                <td>10</td>
+                <td>250,000</td>
+                <td>Mobiles</td>
+                <td>Apple</td>
+                <td>
+                    <a href="#" class="details-btn">Details</a>
+                    <a href="#" class="edit-btn">Edit</a>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="samsung.png" height="50px" width="50px"></td>
+                <td>Samsung Note 10</td>
+                <td>6</td>
+                <td>193,000</td>
+                <td>Mobiles</td>
+                <td>Samsung</td>
+                <td>
+                    <a class="details-btn">Details</a>
+                    <a class="edit-btn">Edit</a>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="samsung.png" height="50px" width="50px"></td>
+                <td>Samsung Note 20s</td>
+                <td>3</td>
+                <td>213,000</td>
+                <td>Mobiles</td>
+                <td>Samsung</td>
+                <td>
+                    <a class="details-btn">Details</a>
+                    <a class="edit-btn">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</fieldset>
+</body>
+</html>
