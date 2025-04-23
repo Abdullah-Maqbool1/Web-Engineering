@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+        
+body {
+padding: 0;
+  margin: 0;
+
+     }
+        a{
+        text-decoration: none;
+        color: black;
+       }
+        /* body{
+            font-family: Arial, Helvetica, sans-serif;
+        } */
+        #sale
+        {
+          margin: 0;
+            font-size: 20px;
+             color:red ;
+             
+             height: 40px;
+             background-color: pink;
+             padding-top: 15px;
+             
+        }
+        .navbar{
+          
+
+          background-color: grey;
+          border-radius: 5px;
+          padding: 10px 0;
+      }
+      .navbar ul{
+       margin: 0;
+          overflow: auto;
+          display: flex;
+          justify-content: space-evenly;
+      }
+
+      .navbar li{
+         
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-evenly;
+          list-style: none;
+          padding: 13px 3px;
+          margin: 3px 25px;
+          display: flex;
+          flex-wrap: wrap;
+
+      }
+      .navbar li a{
+          text-decoration: none;
+          color: black;
+      }
+        .search {
+         
+            float: right;
+
+            margin:6.5px 275px;
+            border: 0px solid black;
+            border-radius: 1 5px ;
+        }
+.navbar input{
+            border: 1px solid rgb(105, 105, 105);
+            border-radius:  15px ;
+
+}
+.navbar li a:hover{
+    color: white;
+}
+#j{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: 30px;
+}
+.container1
+        {
+            display: flex;
+            
+            justify-content:space-evenly ;
+        }
+       #pink{
+        color: rgb(214, 18, 51);
+
+       }
+       .container a{
+        text-decoration: none;
+        color: black;
+       }
+ 
+      #title {
+        padding-top: 50px;
+        font-size: 25px;
+       justify-content: center;
+       }
+       #data{
+        padding-top: 50px;
+        padding-right: 30px;
+       }
+       #line2{
+        padding-top: 70px;
+        padding-right: 30px;
+
+       }
+       #line3{
+        padding-top: 70px;
+        padding-right: 30px;
+       }
+       #line4{
+        padding-top: 70px;
+        padding-right: 30px;
+       }
+      
+       .box
+        {
+            width: 1100px;
+            height: 170px;
+            margin-top: 100px;
+            margin-left: 100px;
+            text-align: center;
+            background-color: rgb(34, 32, 32);
+            font-size: 15px;
+            color: white;
+            
+        }
+            
+        
+        #text1{
+            padding-top: 45px;
+        }
+      .contact
+      {
+        width: 1100px;
+            height: 170px;
+            margin-top: 100px;
+            margin-left: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        font-size: 20px;
+      }
+      button{
+        border-radius: 15px;
+      }
+      input{
+        text-align: center;
+        border-radius: 15px;
+
+      }
+      .cardcontainer {
+            max-width: 1050px;
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+          
+            width: 300px;
+            background-color: #fff;
+            margin:30px 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+           
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+          background-position: center;
+            background-size: cover; /* Use cover to make sure the background covers the entire screen */
+           background-attachment: fixed;
+            width: 100%;
+            height: 410px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+ 
+        .card-title {
+          text-align: center;
+            font-size: 1.5rem;
+            margin: 24px 0;
+            cursor: pointer;
+            transition: all .3s ease;
+
+        }
+        .card-title:hover{
+          color:gray;
+        }
+.flex{
+  display: flex;
+}
+#list{
+  margin-top: 38px;
+  width: 350px;
+  margin-left: 14px;
+}
+.margin-top{
+  margin: 50px 0;
+}
+   
+    </style>
+</head>
+<body>
+  <div id="sale">
+    <marquee> During Sale Periods the delivery time may be larger than normal</marquee>
+     </div>
+  <nav class="navbar">
+    <ul>
+       
+      
+        
+          
+                <li><a href="Welcome.html"> WELCOME </a></li>
+                <li><a href="MAINPAGE.html">HOME</a></li>
+        
+                <li><a href="women.html">WOMEN</a></li>
+                <li><a href="Men.html">MEN</a></li>
+                <li><a href="children.html">KIDS</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li class="login"><a href="signin.html">LOGIN</a></li>
+           
+           
+            
+    
+       
+    
+    </ul>
+         
+    </nav>
+        <h1>
+            <p align="center" id="j" style="color: coral;">Clothing Store</p>
+            </h1>
+            
+          
+             
+        <p align="center" id="title">Stitched Collection</p>
+       
+                    </div> 
+       <div class="flex">
+                    <div id="list"><b class="margin-top">Shopping Options</b><hr>
+                      <a href="" class="margin-top"> DESIGN</a>
+                     
+                        <hr>
+                        <a href="" class="margin-top">COLOR FAMILY</a>
+                        <hr>
+                        <a href="" class="margin-top">VOLUME</a>
+                        <hr>
+                        <a href="" class="margin-top">COLLECTION</a>
+                        <hr>
+                        <a href="" class="margin-top">FABRIC</a>
+                        <hr>
+                        <a href="" class="margin-top">PRODUCT CATEGORY</a>
+                        <hr>
+                        <a href="" class="margin-top">SIZE</a>
+                         <hr>
+                       
+                          </div>
+
+<div class="cardcontainer">
+  <!-- Card 1 -->
+  
+                  <div class="flex">
+  <div class="card">
+      <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/2/3/23-923_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt ="Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+           
+      </div>
+    </a>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/j/w/jwu-23-1759_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt ="Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+         
+      </div>
+    </a>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/2/3/23-570_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt ="Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+          
+      </div>
+    </a>
+  </div>
+</div>
+<div class="flex">
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/j/p/jpu2-23-543_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt ="Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+          
+      </div>
+    </a>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/j/w/jw-23-1738_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt ="Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+        
+      </div>
+    </a>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/2/3/23-031_3_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt = "Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+         
+      </div>
+    </a>
+  </div>
+</div>
+<div class="flex">
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/j/w/jw-23-1748_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=&width="" alt="Card Image" >
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+          
+      </div>
+    </a>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/j/w/jwu-23-1792_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt="Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+          
+      </div>
+    </a>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <a href="womenbill.html">
+      <img src="https://www.junaidjamshed.com/media/catalog/product/2/3/23-1840_1_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=560&width=436" alt="Card Image">
+      <div class="card-content">
+          <h2 class="card-title">Add to Cart</h2>
+         
+      </div>
+    </a>
+  </div>
+</div>
+  <!-- Add more cards as needed -->
+</div>
+</div>
+</body>
+
+<div class="box">
+  <div id="text1"><b>Be The First <br></b>New Arrivals.Exclusive Previews. First access to sales<br>Sign Up to stay in the know
+<br> <input type="text"  placeholder="Enter Your Email">
+<button>Sign Up</button></div>
+</div>
+<div class="contact">
+  <div id="contact1"><b>Need Help?</b><br><br><a href="">+92 21 111 112 111 <br><br>eshop@clothingStore.com</a></div>
+  <div id="contact2"><b>Customer Service</b><br><br><a href="">Contact Us<br>
+      Delivery & Orders<br>
+      Returns & Exchanges<br>
+      Terms & Conditions<br>
+      Privacy Policy<br>
+      Track My Order<br>
+      Payment Guide</a></div>
+  <div id="contact3"><a href=""><b>Company</b><br><br>About Us<br>
+      Careers<br>
+      Store locator</a></div>
+  <div id="contact4"><b>Follow Us</b></div>
+</div>
+
+
+
+   
+</body>
+</html>

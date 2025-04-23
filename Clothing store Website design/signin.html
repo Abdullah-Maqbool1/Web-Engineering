@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap');
+body{
+    font-family: 'Rubik', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+#sale
+        {
+            font-size: 20px;
+             color:red ;
+             
+             height: 40px;
+             background-color: pink;
+             padding-top: 15px;
+             
+        }
+         a{
+           text-decoration: none;
+           color: black;
+          }
+           /* body{
+               font-family: Arial, Helvetica, sans-serif;
+           } */
+           .navbar{
+          
+
+               background-color: grey;
+               border-radius: 5px;
+               padding: 10px 0;
+           }
+           .navbar ul{
+            margin: 0;
+               overflow: auto;
+               display: flex;
+               justify-content: space-evenly;
+           }
+
+           .navbar li{
+              
+               flex-direction: row;
+               align-items: center;
+               justify-content: space-evenly;
+               list-style: none;
+               padding: 13px 3px;
+               margin: 3px 25px;
+               display: flex;
+               flex-wrap: wrap;
+
+           }
+           .navbar li a{
+               text-decoration: none;
+               color: black;
+           }
+.navbar li a:hover{
+    color: white;
+}
+#j{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+}
+.container1
+        {
+            display: flex;
+            
+            justify-content:space-evenly ;
+        }
+     
+       #login{
+        font-size: 30px;
+        padding-left: 70px;
+       }
+       #newlogin{
+        margin-top: 27px;
+       }
+       #newlogin button{
+        margin-top: 20px;
+        background-color: white;
+        width:200px ;
+        height: 40px;
+        text-align: center;
+
+       }
+      
+        #newlogin button:hover{
+        background-color: black;
+        color: white; 
+        
+       }
+       #registered button{
+        background-color: white;
+        width: 70px;
+        height:30px;
+
+       }
+       #registered button:hover{
+        background-color: black;
+        color: white;
+
+       }
+       #registered a{
+        color: red;
+       }
+       #registered a:hover{
+        color: rgb(0, 88, 122);
+       }
+
+      .grid{
+        margin: 0 80px;
+        column-gap: 80px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+      }
+</style>
+
+</head>
+<body>
+    
+    <div id="sale">
+        <marquee> During Sale Periods the delivery time may be larger than normal</marquee>
+         </div>
+         <nav class="navbar">
+             <ul>
+                
+               
+                 
+                   
+                <li><a href="Welcome.html"> WELCOME</a></li>
+                <li><a href="MAINPAGE.html">HOME</a></li>
+        
+                <li><a href="women.html">WOMEN</a></li>
+                <li><a href="Men.html">MEN</a></li>
+                <li><a href="children.html">KIDS</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li class="login"><a href="signin.html">LOGIN</a></li>
+                    
+                    
+                     
+             
+                
+             
+             </ul>
+                  
+             </nav>
+        <h1>
+            <p align="center" id="j" style="color: coral;">Clothing Store</p>
+            </h1>
+            
+           
+            <div id="login">
+            <p>Customer Login</p>
+            </div>
+            <div class="container">
+            <div class="grid">
+                <div  class="">
+                <div id="registered">
+                    <p>Registered Customers <hr>
+                    If you have an account sign in with your E-mail </p><br>
+                    
+                 <b> E-mail* </b><br>  <input type="text" placeholder="">
+                  <br><br>
+                 <b> Password*</b> <br><input type="password" placeholder="">
+                 <br><br> <br><a href="file:///E:/Html+Css/junaid/j1.html"><button>Sign In</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">forget your password?</a>
+               
+                </div>
+                </div>
+                <div  class="">
+                    <div id="newlogin">
+                        New Customer
+                        <hr>
+                        Creating an account has many benefits: check out faster, keep more than one address, track orders and more
+                        <br> <a href="newaccount.html"><button>Create an Account</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+</html>
