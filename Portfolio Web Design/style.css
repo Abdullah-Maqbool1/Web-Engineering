@@ -75,6 +75,32 @@ h1,h2,h3,p,ul {
   margin: 0;
 }
 
+h1{
+  font-size: 3.5rem;
+}
+
+h1 > span{
+  position: relative;
+  display: inline-block;
+  color: var(--first-color);
+  height: 1.55em;
+  vertical-align: bottom;
+  overflow: hidden;
+}
+
+h1 > span > span{
+  display: block;
+  animation: animateWords 10s infinite ease;
+}
+
+@keyframes animateWords{
+0%{transform: translateY(0%);}
+25%{transform: translateY(-100%);}
+50%{transform: translateY(-200%);}
+75%{transform: translateY(-300%);}
+100%{transform: translateY(-400%);}
+}
+
 ul {
   padding: 0;
   list-style: none;
