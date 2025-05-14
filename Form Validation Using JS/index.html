@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+</head>
+<body>
+  <h2>Form Validation</h2>
+  <form onsubmit="return validateForm()">
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" id="name"></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><input type="text" id="email"></td>
+      </tr>
+      <tr>
+        <td>Phone Number:</td>
+        <td><input type="text" id="phone"></td>
+      </tr>
+      <tr>
+        <td>Age:</td>
+        <td><input type="number" id="age"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input type="password" id="password"></td>
+      </tr>
+      <tr>
+        <td>Confirm Password:</td>
+        <td><input type="password" id="confirmPassword"></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center;"><button type="submit">Submit</button></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    function validateForm() {
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let phone = document.getElementById("phone").value.trim();
+      let age = document.getElementById("age").value;
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirmPassword").value;
+
+      // Name validation
+      if (name === "") {
+        alert("Name is required");
+        return false;
+      }
+      if (name.length < 3 || name.length > 30) {
+        alert("Name must be between 3 and 30 characters");
+        return false;
+      }
+
+      // Email validation
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailPattern.test(email)) {
+        alert("Enter a valid email address");
+        return false;
+      }
+
+      // Phone validation
+      const phonePattern = /^[0-9]{10,15}$/;
+      if (!phonePattern.test(phone)) {
+        alert("Phone number must be between 10 and 15 digits and numeric only");
+        return false;
+      }
+
+      // Age validation
+      if (age === "" || age < 18 || age > 60) {
+        alert("Age must be between 18 and 60");
+        return false;
+      }
+
+      // Password validation
+      if (password.length < 6 || password.length > 20) {
+        alert("Password must be between 6 and 20 characters");
+        return false;
+      }
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{6,20}$/;
+      if (!passwordPattern.test(password)) {
+        alert("Password must include at least one uppercase letter, one lowercase letter, one number, and one special character");
+        return false;
+      }
+
+      // Confirm Password validation
+      if (password !== confirmPassword) {
+        alert("Passwords do not match");
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+</body>
+</html>
