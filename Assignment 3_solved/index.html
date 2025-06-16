@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>ALL TASKS (1 to 4)</title>
+</head>
+<body>
+
+  <!-- TASK 01 -->
+  <section id="task01">
+    <h2>Day and Night Image Toggle (TASK 01)</h2>
+    <img id="image" src="./images/day.jpg" alt="Daytime" width="400" height="250" />
+    <br />
+    <button id="toggleButton" onclick="toggleTime()">Night</button>
+  </section>
+
+  <hr />
+
+  <!-- TASK 02 -->
+  <section id="task02">
+    <h2>Click Any Item to Change Its Content (TASK 02)</h2>
+    <ul id="itemList">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <!-- TASK 03 -->
+  <section id="task03">
+    <h2>Dynamically Add Headings and Paragraphs (TASK 03)</h2>
+    <button id="addElementBtn">Add Element</button>
+    <div id="contentContainer"></div>
+  </section>
+
+  <hr />
+
+  <!-- TASK 04 -->
+  <section id="task04">
+    <h2>Interactive Form with Validation (TASK 04)</h2>
+    <form id="myForm">
+      <div class="form-group">
+        <label>Name:<br>
+          <input type="text" id="name" />
+        </label>
+        <span class="error" id="nameError"></span>
+      </div>
+
+      <div class="form-group">
+        <label>Password:<br>
+          <input type="password" id="password" />
+        </label>
+        <span class="error" id="passwordError"></span>
+      </div>
+
+      <div class="form-group">
+        <label>Comments:<br>
+          <textarea id="comments" rows="4" cols="40"></textarea>
+        </label>
+        <span class="error" id="commentsError"></span>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
