@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #F9F1E9;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  color: #4A2C2A;
+  font-size: 2rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #D7C4B8;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 15px rgba(60, 40, 35, 0.15);
+  transition: transform 0.3s ease;
+  border: 2px solid #5C4033;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #4A2C2A;
+}
+
+.card p {
+  color: #3E2A23;
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+}
+
+.card .email {
+  font-weight: bold;
+  color: #5C4033;
+}
+
+.error-message {
+  color: red;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
