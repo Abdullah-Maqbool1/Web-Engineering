@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Spider-Man Web Shooter Game</title>
+<style>
+  body {
+    margin: 0;
+    background: skyblue;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  #gameCanvas {
+    background: linear-gradient(skyblue, lightgreen);
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #333;
+  }
+  #score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    background: rgba(255,255,255,0.7);
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+  #instructions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    color: black;
+    background: rgba(255,255,255,0.7);
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="gameCanvas" width="800" height="400"></canvas>
+<div id="score">Score: 0</div>
+<div id="instructions">Click or press <strong>Space</strong> to shoot web</div>
+
+<script>
+// Load Spider-Man image
+const spidermanImg = new Image();
+spidermanImg.src = "spiderman.png"; // Save your PNG in same folder
+
+// Load villain images
+const villainImages = [];
+for (let i = 1; i <= 5; i++) {
+    const img = new Image();
+    img.src = `v${i}.png`; // v1.png, v2.png, ...
+    villainImages.push(img);
+}
+
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+let score = 0;
+const scoreDisplay = document.getElementById("score");
+
+// Spider-Man settings
+const spiderman = {
+    x: 50,
+    y: canvas.height / 2 - 60,
+    width: 120,
+    height: 120
+};
+
+// Webs shot by Spider-Man
+let webs = [];
+const webSpeed = 10;
+
+// Enemies
+let enemies = [];
+const enemySpeed = 3;
+
+// Create enemies periodically
+setInterval(() => {
+    let randomVillain = villainImages[Math.floor(Math.random() * villainImages.length)];
+    let villainSize = 100; // Bigger size
+    enemies.push({
+        x: canvas.width,
+        y: Math.random() * (canvas.height - villainSize),
+        width: villainSize,
+        height: villainSize,
+        image: randomVillain
+    });
+}, 1300);
+
+// Shoot web on click or spacebar
+document.addEventListener("click", shootWeb);
+document.addEventListener("keydown", (e) => {
+    if (e.code === "Space") shootWeb();
+});
+
+function shootWeb() {
+    webs.push({
+        x: spiderman.x + spiderman.width - 20,
+        y: spiderman.y + spiderman.height / 2 - 5,
+        width: 30,
+        height: 4,
+        color: "white"
+    });
+}
+
+// Allow Spider-Man to follow mouse vertically
+document.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouseY = e.clientY - rect.top;
+    spiderman.y = Math.max(0, Math.min(canvas.height - spiderman.height, mouseY - spiderman.height / 2));
+});
+
+// Game loop
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw Spider-Man image
+    ctx.drawImage(spidermanImg, spiderman.x, spiderman.y, spiderman.width, spiderman.height);
+
+    // Draw and move webs
+    for (let i = webs.length - 1; i >= 0; i--) {
+        let web = webs[i];
+        web.x += webSpeed;
+        ctx.fillStyle = web.color;
+        ctx.fillRect(web.x, web.y, web.width, web.height);
+
+        if (web.x > canvas.width) webs.splice(i, 1);
+    }
+
+    // Draw and move enemies
+    for (let i = enemies.length - 1; i >= 0; i--) {
+        let enemy = enemies[i];
+        enemy.x -= enemySpeed;
+        ctx.drawImage(enemy.image, enemy.x, enemy.y, enemy.width, enemy.height);
+
+        if (enemy.x + enemy.width < 0) enemies.splice(i, 1);
+
+        // Check collision with webs
+        for (let j = webs.length - 1; j >= 0; j--) {
+            let web = webs[j];
+            if (web.x < enemy.x + enemy.width &&
+                web.x + web.width > enemy.x &&
+                web.y < enemy.y + enemy.height &&
+                web.y + web.height > enemy.y) {
+                enemies.splice(i, 1);
+                webs.splice(j, 1);
+                score++;
+                scoreDisplay.innerText = "Score: " + score;
+                break;
+            }
+        }
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</script>
+
+</body>
+</html>
