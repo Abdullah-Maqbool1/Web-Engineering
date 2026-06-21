@@ -1,0 +1,395 @@
+// code optimization:
+
+import java.util.HashMap;
+
+
+public class LibrarySystem {
+    HashMap<Integer, Book> booksMap = new HashMap<>();
+
+    public void addBook(Book book) {
+        booksMap.put(book.getId(), book);
+    }
+
+    public Book searchBook(int searchId) {
+        return booksMap.get(searchId);
+    }
+
+    public static void main(String[] args) {
+        LibrarySystem library = new LibrarySystem();
+
+        library.addBook(new Book(101, "Java Programming"));
+        library.addBook(new Book(102, "Data Structures"));
+
+        Book result = library.searchBook(102);
+
+        if(result != null)
+            System.out.println("Book Found: " + result.getTitle());
+        else
+            System.out.println("Book Not Found");
+    }
+}
+
+class Book {
+    private int id;
+    private String title;
+
+    public Book(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+}
+
+
+
+
+
+
+
+
+// exception handling =============================================================================
+import java.util.Scanner;
+
+class InvalidMarksException extends Exception{
+    public InvalidMarksException(String message){
+        super(message);
+    }
+}
+
+public class StudentMarks {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.println("Enter marks: ");
+            double marks = sc.nextInt();
+
+            if(marks < 0 || marks > 100) {
+                throw new InvalidMarksException(
+                        "invalid marks! marks should be between 1 and 100."
+                );
+            }
+
+            System.out.println("Marks Entered Successfully: "+marks);
+        }catch(InvalidMarksException e){
+            System.out.println("Error: "+e.getMessage());
+        }
+        catch (Exception e){
+            System.out.println("Invalid Input: Please enter a number.");
+        }finally {
+            System.out.println("Program Ended!");
+            sc.close();
+        }
+    }
+}
+
+
+
+
+
+
+// GUI ------------------------------------------------------------------------------------------------------
+
+import javax.swing.*;
+import java.awt.event.*;
+
+// Main Class
+public class TemperatureConverter extends JFrame implements ActionListener {
+
+    JTextField fahrenheitField;
+    JButton convertButton;
+    JLabel resultLabel;
+
+    public TemperatureConverter() {
+
+        // Frame Settings
+        setTitle("Temperature Converter");
+        setSize(350, 200);
+        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Fahrenheit Input Label
+        JLabel inputLabel = new JLabel("Enter Fahrenheit:");
+        inputLabel.setBounds(30, 30, 120, 25);
+        add(inputLabel);
+
+        // Text Field
+        fahrenheitField = new JTextField();
+        fahrenheitField.setBounds(150, 30, 120, 25);
+        add(fahrenheitField);
+
+        // Button
+        convertButton = new JButton("Convert");
+        convertButton.setBounds(110, 70, 100, 30);
+        convertButton.addActionListener(this);
+        add(convertButton);
+
+        // Result Label
+        resultLabel = new JLabel("Celsius: ");
+        resultLabel.setBounds(30, 120, 250, 25);
+        add(resultLabel);
+
+        setVisible(true);
+    }
+
+    // Event Handling
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        try {
+            double fahrenheit = Double.parseDouble(fahrenheitField.getText());
+
+            // Celsius Formula
+            double celsius = (fahrenheit - 32) * 5 / 9;
+
+            resultLabel.setText(
+                    "Celsius: " + celsius + "°C"
+            );
+
+        } catch (NumberFormatException ex) {
+            resultLabel.setText("Please enter a valid number!");
+        }
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+        new TemperatureConverter();
+    }
+}
+
+
+
+
+// JUNIT4 --------------------------------------------------------------------------------------------------------
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class BankAccountTest {
+
+    @Test
+    public void testDeposit() {
+        BankAccount account = new BankAccount(1000);
+        account.deposit(500);
+
+        assertEquals(1500.0, account.getBalance(), 0.001);
+    }
+
+    @Test
+    public void testWithdraw() {
+        BankAccount account = new BankAccount(1000);
+        account.withdraw(300);
+
+        assertEquals(700.0, account.getBalance(), 0.001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithdrawException() {
+        BankAccount account = new BankAccount(1000);
+        account.withdraw(1500);
+    }
+}
+
+
+
+// JUNIT 5 -------------------------------------------------------------------------------------------------------------
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class BankAccountTest {
+
+    @Test
+    void testDeposit() {
+        BankAccount account = new BankAccount(1000);
+        account.deposit(500);
+
+        assertEquals(1500.0, account.getBalance());
+    }
+
+    @Test
+    void testWithdraw() {
+        BankAccount account = new BankAccount(1000);
+        account.withdraw(300);
+
+        assertEquals(700.0, account.getBalance());
+    }
+
+    @Test
+    void testWithdrawException() {
+        BankAccount account = new BankAccount(1000);
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> account.withdraw(1500)
+        );
+    }
+}
+
+
+
+
+
+// temp GUI implementatiosn --------------------------------------------------------------------------------
+
+import javax.swing.*;
+import java.awt.event.*;
+
+public class SwingComponentsDemo extends JFrame implements ActionListener {
+
+    JLabel lblName, lblPass, lblGender, lblHobby, lblCountry, lblAddress;
+    JTextField txtName;
+    JPasswordField txtPass;
+    JTextArea txtAddress;
+
+    JRadioButton male, female;
+    ButtonGroup genderGroup;
+
+    JCheckBox cricket, football, coding;
+
+    JComboBox<String> countryBox;
+
+    JButton submitBtn;
+
+    public SwingComponentsDemo() {
+
+        setTitle("Swing Components Demo");
+        setSize(500, 500);
+        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Name
+        lblName = new JLabel("Name:");
+        lblName.setBounds(30, 30, 100, 25);
+        add(lblName);
+
+        txtName = new JTextField();
+        txtName.setBounds(150, 30, 200, 25);
+        add(txtName);
+
+        // Password
+        lblPass = new JLabel("Password:");
+        lblPass.setBounds(30, 70, 100, 25);
+        add(lblPass);
+
+        txtPass = new JPasswordField();
+        txtPass.setBounds(150, 70, 200, 25);
+        add(txtPass);
+
+        // Gender
+        lblGender = new JLabel("Gender:");
+        lblGender.setBounds(30, 110, 100, 25);
+        add(lblGender);
+
+        male = new JRadioButton("Male");
+        male.setBounds(150, 110, 80, 25);
+
+        female = new JRadioButton("Female");
+        female.setBounds(240, 110, 100, 25);
+
+        genderGroup = new ButtonGroup();
+        genderGroup.add(male);
+        genderGroup.add(female);
+
+        add(male);
+        add(female);
+
+        // Hobbies
+        lblHobby = new JLabel("Hobbies:");
+        lblHobby.setBounds(30, 150, 100, 25);
+        add(lblHobby);
+
+        cricket = new JCheckBox("Cricket");
+        cricket.setBounds(150, 150, 100, 25);
+
+        football = new JCheckBox("Football");
+        football.setBounds(250, 150, 100, 25);
+
+        coding = new JCheckBox("Coding");
+        coding.setBounds(350, 150, 100, 25);
+
+        add(cricket);
+        add(football);
+        add(coding);
+
+        // Combo Box
+        lblCountry = new JLabel("Country:");
+        lblCountry.setBounds(30, 190, 100, 25);
+        add(lblCountry);
+
+        String countries[] = {
+                "Pakistan",
+                "India",
+                "China",
+                "USA",
+                "UK"
+        };
+
+        countryBox = new JComboBox<>(countries);
+        countryBox.setBounds(150, 190, 200, 25);
+        add(countryBox);
+
+        // Text Area
+        lblAddress = new JLabel("Address:");
+        lblAddress.setBounds(30, 230, 100, 25);
+        add(lblAddress);
+
+        txtAddress = new JTextArea();
+        txtAddress.setBounds(150, 230, 200, 80);
+        add(txtAddress);
+
+        // Button
+        submitBtn = new JButton("Submit");
+        submitBtn.setBounds(180, 350, 100, 30);
+        submitBtn.addActionListener(this);
+        add(submitBtn);
+
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        String name = txtName.getText();
+
+        String gender = "";
+        if (male.isSelected())
+            gender = "Male";
+        else if (female.isSelected())
+            gender = "Female";
+
+        String hobbies = "";
+        if (cricket.isSelected())
+            hobbies += "Cricket ";
+        if (football.isSelected())
+            hobbies += "Football ";
+        if (coding.isSelected())
+            hobbies += "Coding ";
+
+        String country = (String) countryBox.getSelectedItem();
+
+        String address = txtAddress.getText();
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Name: " + name +
+                "\nGender: " + gender +
+                "\nHobbies: " + hobbies +
+                "\nCountry: " + country +
+                "\nAddress: " + address
+        );
+    }
+
+    public static void main(String[] args) {
+        new SwingComponentsDemo();
+    }
+}
+
+________________________________________________________________________________________________________
