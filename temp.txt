@@ -168,3 +168,269 @@ gcc server.c -o server -lpthread
 Client
 gcc client.c -o client
 */
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+TCP CONCURRENT SERVER USING SELECT
+
+Server.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+
+#define PORT 8080
+#define MAX_CLIENTS 30
+#define BUFFER_SIZE 1024
+
+int main()
+{
+    int server_fd, new_socket, client_socket[MAX_CLIENTS];
+    struct sockaddr_in server_addr, client_addr;
+    socklen_t addrlen = sizeof(client_addr);
+
+    fd_set readfds;
+
+    char buffer[BUFFER_SIZE];
+
+    for (int i = 0; i < MAX_CLIENTS; i++)
+        client_socket[i] = 0;
+
+    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+
+    int opt = 1;
+    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR,
+               &opt, sizeof(opt));
+
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port = htons(PORT);
+
+    bind(server_fd,
+         (struct sockaddr *)&server_addr,
+         sizeof(server_addr));
+
+    listen(server_fd, 5);
+
+    printf("Server Listening on Port %d...\n", PORT);
+
+    while (1)
+    {
+        FD_ZERO(&readfds);
+
+        FD_SET(server_fd, &readfds);
+
+        int max_sd = server_fd;
+
+        for (int i = 0; i < MAX_CLIENTS; i++)
+        {
+            int sd = client_socket[i];
+
+            if (sd > 0)
+                FD_SET(sd, &readfds);
+
+            if (sd > max_sd)
+                max_sd = sd;
+        }
+
+        select(max_sd + 1,
+               &readfds,
+               NULL,
+               NULL,
+               NULL);
+
+        /* New Connection */
+        if (FD_ISSET(server_fd, &readfds))
+        {
+            new_socket = accept(server_fd,
+                                (struct sockaddr *)&client_addr,
+                                &addrlen);
+
+            printf("\nNew Client Connected\n");
+            printf("IP   : %s\n",
+                   inet_ntoa(client_addr.sin_addr));
+            printf("Port : %d\n",
+                   ntohs(client_addr.sin_port));
+
+            char *msg =
+                "Please enter any two numbers, or type EXIT to exit\n";
+
+            send(new_socket,
+                 msg,
+                 strlen(msg),
+                 0);
+
+            for (int i = 0; i < MAX_CLIENTS; i++)
+            {
+                if (client_socket[i] == 0)
+                {
+                    client_socket[i] = new_socket;
+                    break;
+                }
+            }
+        }
+
+        /* Existing Clients */
+        for (int i = 0; i < MAX_CLIENTS; i++)
+        {
+            int sd = client_socket[i];
+
+            if (FD_ISSET(sd, &readfds))
+            {
+                memset(buffer, 0, BUFFER_SIZE);
+
+                int valread =
+                    recv(sd,
+                         buffer,
+                         BUFFER_SIZE,
+                         0);
+
+                if (valread <= 0)
+                {
+                    printf("Client Disconnected\n");
+
+                    close(sd);
+                    client_socket[i] = 0;
+                }
+                else
+                {
+                    buffer[strcspn(buffer, "\n")] = '\0';
+
+                    printf("Received: %s\n",
+                           buffer);
+
+                    if (strcmp(buffer, "EXIT") == 0)
+                    {
+                        printf("Client requested EXIT\n");
+
+                        close(sd);
+                        client_socket[i] = 0;
+                        continue;
+                    }
+
+                    int a, b;
+
+                    if (sscanf(buffer,
+                               "%d %d",
+                               &a,
+                               &b) == 2)
+                    {
+                        char response[1024];
+
+                        sprintf(response,
+                                "Numbers : %d, %d\n"
+                                "Sum : %d + %d = %d\n"
+                                "Sub : %d - %d = %d\n"
+                                "Div : %d / %d = %.2f\n\n"
+                                "Please enter any two numbers, or type EXIT to exit\n",
+                                a, b,
+                                a, b, a + b,
+                                a, b, a - b,
+                                a, b,
+                                (b != 0) ? (float)a / b : 0.0);
+
+                        send(sd,
+                             response,
+                             strlen(response),
+                             0);
+
+                        printf("Response Sent\n");
+                    }
+                    else
+                    {
+                        char *err =
+                            "Invalid Input\nPlease enter two numbers or EXIT\n";
+
+                        send(sd,
+                             err,
+                             strlen(err),
+                             0);
+                    }
+                }
+            }
+        }
+    }
+
+    close(server_fd);
+
+    return 0;
+} 
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+CLIENT.C:
+
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+#define PORT 8080
+#define BUFFER_SIZE 1024
+
+int main()
+{
+    int sock;
+
+    struct sockaddr_in server_addr;
+
+    char buffer[BUFFER_SIZE];
+
+    sock = socket(AF_INET,
+                  SOCK_STREAM,
+                  0);
+
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(PORT);
+    server_addr.sin_addr.s_addr =
+        inet_addr("127.0.0.1");
+
+    connect(sock,
+            (struct sockaddr *)&server_addr,
+            sizeof(server_addr));
+
+    memset(buffer, 0, BUFFER_SIZE);
+
+    recv(sock,
+         buffer,
+         BUFFER_SIZE,
+         0);
+
+    printf("%s", buffer);
+
+    while (1)
+    {
+        fgets(buffer,
+              BUFFER_SIZE,
+              stdin);
+
+        send(sock,
+             buffer,
+             strlen(buffer),
+             0);
+
+        if (strncmp(buffer,
+                    "EXIT",
+                    4) == 0)
+        {
+            printf("Disconnected from Server\n");
+            break;
+        }
+
+        memset(buffer, 0, BUFFER_SIZE);
+
+        recv(sock,
+             buffer,
+             BUFFER_SIZE,
+             0);
+
+        printf("\n%s\n",
+               buffer);
+    }
+
+    close(sock);
+
+    return 0;
+}
